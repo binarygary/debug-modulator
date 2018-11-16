@@ -14,9 +14,13 @@ class Plugin {
 	const MU_FILE_NAME = 'debug-modulator-mu.php';
 
 	protected $file;
+	protected $mu_file;
+	protected $mu_destination;
 
 	public function __construct( $file ) {
-		$this->file = $file;
+		$this->file           = $file;
+		$this->mu_file        = sprintf( '%s/%s', dirname( $this->file ), self::MU_FILE_NAME );
+		$this->mu_destination = sprintf( '%s/%s', WPMU_PLUGIN_DIR, self::MU_FILE_NAME );
 	}
 
 	public function installed() {
@@ -24,10 +28,11 @@ class Plugin {
 	}
 
 	public function install() {
-		$mu_file        = sprintf( '%s/%s', dirname( $this->file ), self::MU_FILE_NAME );
-		$mu_destination = sprintf( '%s/%s', WPMU_PLUGIN_DIR, self::MU_FILE_NAME );
+		copy( $this->mu_file, $this->mu_destination );
+	}
 
-		copy( $mu_file, $mu_destination );
+	public function uninstall() {
+		unlink( $this->mu_destination );
 	}
 
 	public function hooks() {
