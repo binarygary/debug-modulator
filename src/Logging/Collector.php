@@ -16,7 +16,7 @@ class Collector {
 	}
 
 	public function shutdown_handler() {
-		sleep(0);
+		do_action( 'modulator/process_errors', $this->errors );
 	}
 
 	public static function instance() {
