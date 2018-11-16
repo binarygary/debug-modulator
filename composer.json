@@ -1,0 +1,15 @@
+{
+  "name": "binarygary/debug-modulator",
+  "type": "WordPress Plugin",
+  "description": "Splash debug logs for a request in unique ways.",
+  "license": "GPL v2.0",
+  "config": {
+    "vendor-dir": "vendor",
+    "preferred-install": "dist"
+  },
+  "autoload": {
+    "psr-4": {
+      "Modulator\\": "src/"
+    }
+  }
+}
