@@ -15,7 +15,7 @@ register_activation_hook( __FILE__, function () use ( $plugin ) {
 } );
 
 register_deactivation_hook( __FILE__, function () use ( $plugin ) {
-
+	$plugin->uninstall();
 } );
 
 if ( ! $plugin->installed() ) {
